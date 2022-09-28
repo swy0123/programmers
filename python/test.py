@@ -1,25 +1,25 @@
-# 10814
-import sys
+# # 10814
+# import sys
 
-n = int(sys.stdin.readline())
-curO = ''
-cnt = 0
-arr = []
+# n = int(sys.stdin.readline())
+# curO = ''
+# cnt = 0
+# arr = []
 
-for i in range(n):
-    a, b = map(str, sys.stdin.readline().split())
+# for i in range(n):
+#     a, b = map(str, sys.stdin.readline().split())
 
-    # if a == curO:
-    #     cnt += 1
-    # else:
-    #     cnt = 0
-    #     curO = a
+#     # if a == curO:
+#     #     cnt += 1
+#     # else:
+#     #     cnt = 0
+#     #     curO = a
     
-    arr.append((int(a), b))
-arr.sort(key = lambda x: x[0])
+#     arr.append((int(a), b))
+# arr.sort(key = lambda x: x[0])
 
-for i in arr:
-    print(str(i[0]) + ' ' + i[1])
+# for i in arr:
+#     print(str(i[0]) + ' ' + i[1])
 
 # #1251
 # import sys
@@ -161,3 +161,35 @@ for i in arr:
 #         num *= a
 #     print(num%10)
 
+def quick_select(A,k):
+	p = A[0]
+	S = L = M = []
+	M.append(p)
+	for x in A:
+		if x < p : 
+			S.append(x)
+		elif x == p:
+			M.append(x)
+		else:
+			L.append(x)
+	if len(S)>= k:
+        print(S)
+        return quick_select(S,k)
+	elif len(S)+ len(M) < k :
+        print(L)
+        return quick_select(L,k-len(S)-len(M))
+    else:
+        print(p)
+        return p
+	 
+A = list(map(int, input().split()))
+print(A)
+answer = 0
+quick_select(A,0)
+# for i in range(len(A)):
+# 		m = A[:i+1]
+# 		a = quick_select(m,i//3)
+# 		# print(m[i//3])
+# 		answer += a
+
+print(answer)

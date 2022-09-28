@@ -1,7 +1,8 @@
 import sys
 
 answer = 0
-arr = list(map(int, input().split()))
+# arr = list(map(int, input().split()))
+arr = [9, 1, 3, 2, 7, 0, -2, 4, 5]
 length = len(arr)
 print(length)
 
@@ -9,7 +10,7 @@ print(length)
 for i in range(length):
     cur = arr[:i+1]
     cur.sort()
-    print(cur[i//3])
+    print(cur, cur[i//3])
     answer += cur[i//3]
 
 print(answer)
