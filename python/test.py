@@ -161,35 +161,3 @@
 #         num *= a
 #     print(num%10)
 
-def quick_select(A,k):
-	p = A[0]
-	S = L = M = []
-	M.append(p)
-	for x in A:
-		if x < p : 
-			S.append(x)
-		elif x == p:
-			M.append(x)
-		else:
-			L.append(x)
-	if len(S)>= k:
-        print(S)
-        return quick_select(S,k)
-	elif len(S)+ len(M) < k :
-        print(L)
-        return quick_select(L,k-len(S)-len(M))
-    else:
-        print(p)
-        return p
-	 
-A = list(map(int, input().split()))
-print(A)
-answer = 0
-quick_select(A,0)
-# for i in range(len(A)):
-# 		m = A[:i+1]
-# 		a = quick_select(m,i//3)
-# 		# print(m[i//3])
-# 		answer += a
-
-print(answer)

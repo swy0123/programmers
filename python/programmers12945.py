@@ -17,7 +17,7 @@
 def solution(n):
     answer = 0
 
-    fib = [0 for _ in range(100000)]
+    fib = [0 for _ in range(100001)]
     fib[0] = 0
     fib[1] = 1
     
@@ -29,3 +29,12 @@ def solution(n):
     return answer
 
 print(solution(5))
+
+# 풀이 후 개선 점
+# 1. 처음에 100001짜리 리스트를 만드는 것보다 append를 이용하는 것이 메모리 절약
+# 2. 훨씬 간단한 코드 있음 - 파이썬의 특징을 이용
+# def fibonacci(num):
+#     a,b = 0,1
+#     for i in range(num):
+#         a,b = b,a+b
+#     return a
