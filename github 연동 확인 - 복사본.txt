@@ -1,5 +1,0 @@
-깃허브 디스코드 연동 확인
-
-방법 출처
-https://discordbot.tistory.com/35
-https://github.com/swy0123/programmers/settings/hooks
