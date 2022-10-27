@@ -161,3 +161,72 @@
 #         num *= a
 #     print(num%10)
 
+
+def merge_sort_3(A,first,last):
+    if last - first < 2: return
+    middle1 = first + (last-first)//3
+    middle2 = first + 2*(last-first)//3 +1
+    merge_sort_3(A, first, middle1)
+    merge_sort_3(A, middle1+1, middle2)
+    merge_sort_3(A, middle2+1, last)
+    B = []
+    i = first
+    j = middle1+1
+    k = middle2+1
+    while i <= middle1 and j <= middle2 and k<= last:
+        if A[i] <= A[j] and A[i]<= A[k]:
+            B.append(A[i])
+            i += 1
+        elif A[j] <= A[k] and A[j]< A[i]:
+            B.append(A[j])
+            j += 1
+        elif A[k] < A[i] and A[k]< A[j]:
+            B.append(A[k])
+            k += 1
+
+    if i > middle1:
+        while j <= middle2 and k<= last:
+            if A[j] <= A[k]:
+                B.append(A[j])
+                j += 1
+            else:
+                B.append(A[k])
+                k += 1
+        for j in range(j, middle2+1): 
+            B.append(A[j])
+        for k in range(k, last+1): 
+            B.append(A[k])
+
+    elif j > middle2:
+        while i <= middle1 and k<= last:
+            if A[i] <= A[k]:
+                B.append(A[i])
+                i += 1
+            else:
+                B.append(A[k])
+                k += 1
+        for i in range(i, middle1+1): 
+            B.append(A[i])
+        for k in range(k, last+1): 
+            B.append(A[k])
+
+    elif k >last:
+        while i <= middle1 and j<= middle2:
+            if A[i] <= A[j]:
+                B.append(A[i])
+                i += 1
+            else:
+                B.append(A[j])
+                j += 1
+        for i in range(i, middle1+1): 
+            B.append(A[i])
+        for j in range(j, middle2+1): 
+            B.append(A[j])
+
+    for k in range(first, last+1):
+        A[k] = B[k-first]
+
+
+A = [9,8,7,6,5,4,3,2,1,11,12,15,17,14,13,16,19,20,10,0]
+print(merge_sort_3(A, 0, 19))
+print(A)

@@ -1,40 +1,77 @@
-def quickSort(array, low=0, high=None):
-    if high is None:
-        high = len(array) - 1
+def quick_sort(A, first, last):
+	global Qc # 비교
+	global Qs # 교환횟수
+	if first >= last: return
+	left, right = first+1, last
+	pivot = A[first]
+	while left <= right:
+		while left <= last and A[left] < pivot:
+			left += 1
+			Qc+=1
+		while right > first and A[right] >= pivot:
+			right -= 1
+			Qc+=1
+		if left <= right: # swap A[left] and A[right]
+			A[left], A[right] = A[right], A[left]
+			Qs +=1 #교환
+			left += 1
+			right -= 1
+	# place pivot at the right place
+	A[first], A[right] = A[right], A[first]
+	Qs +=1 #교환
+	quick_sort(A, first, right-1)
+	quick_sort(A, right+1, last)
 
-    if low < high and high - low > 16:
-        p = partition(array, low, high)
-        quickSort(array, low, p)
-        quickSort(array, p + 1, high)
+def insertion_sort_1(A):
+	global Qc1 # 비교
+	global Qs1 # 교환횟수
+	for i in range(1,len(A)):
+		j = i-1
+		while j >=0 and A[j]>A[j+1]:
+			Qc1 +=1
+			A[j],A[j+1] = A[j+1],A[j]
+			Qs1 +=1
+			j = j-1
+def quick_sort_1(A,first, last):
+	global Qc1 # 비교
+	global Qs1 # 교환횟수
+	if last - first <= 10: 
+		insertion_sort_1(A)
+		# A.sort()
+	left, right = first+1, last
+	pivot = A[first]
+	while left <= right:
+		while left <= last and A[left] < pivot:
+			left += 1
+			Qc1+=1
+		while right > first and A[right] >= pivot:
+			right -= 1
+			Qc1+=1
+		if left <= right: # swap A[left] and A[right]
+			A[left], A[right] = A[right], A[left]
+			Qs1 +=1 #교환
+			left += 1
+			right -= 1
+	# place pivot at the right place
+	A[first], A[right] = A[right], A[first]
+	Qs1+=1
+	quick_sort(A, first, right-1)
+	quick_sort(A, right+1, last)
 
-    return insertSort(array, low, high)
-    
-def partition(array, low, high):
-    pivot = array[(high + low) // 2]
-    i = low - 1
-    j = high + 1
-    while True:
-        i += 1
-        while array[i] < pivot:
-            i += 1
-        j -= 1
-        while array[j] > pivot:
-            j -= 1
-
-        if i >= j:
-            return j
-
-        array[i], array[j] = array[j], array[i]
+def insertion_sort_2(A,n):
+	global Qc2 # 비교
+	global Qs2 # 교환횟수
+	for i in range(1,n):
+		j = i-1
+		while j >=0 and A[j]>A[j+1]:
+			Qc2 +=1
+			A[j],A[j+1] = A[j+1],A[j]
+			Qs2 +=1
+			j = j-1
 
 
-def insertSort(array, low=0, high=None):
-    if high is None:
-        high = len(array) - 1
+A = []
 
-    for i in range(low + 1, high + 1):
-        j = i
-        while j > 0 and array[j] < array[j - 1]:
-            array[j], array[j - 1] = array[j - 1], array[j]
-            j -= 1
+quick_sort(A, 0, 100)
 
-    return array
+quick_sort_1(B, 0, 100)
