@@ -26,7 +26,6 @@ def solution(prices):
     while stack:
         cur = stack.pop()
         answer[cur[1]] = i - cur[1]
-
     return answer
 
 print(solution([1, 2, 3, 2, 3]))
