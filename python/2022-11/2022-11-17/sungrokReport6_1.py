@@ -12,9 +12,7 @@ def solution(n, arr):
             answer += 1
             heap = []
             heapq.heappush(heap, arr[i][1])
-
     return answer
-
 
 n = int(input())
 arr = []

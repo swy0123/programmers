@@ -6,9 +6,7 @@ def solution(n, s, cache=dict()):
         return 0
     elif n == 1:
         return 1
-    if s<0:
-        return 0
-
+        
     if (n, s) in cache:
         return cache[(n, s)]
     count = 0
